@@ -42,7 +42,7 @@ for i in range(0,len(interleaved_list)-1):
 	index=(interleaved_list[i] >> 4)& ((1 << 6)-1);
 	
 
-	Cache[index]=0;
+	Cache[index]=[0,0];
 	
 
 print("Doing please wait");
@@ -61,24 +61,30 @@ for i in range(0,len(address+address2)):
     	index=(a >> 4)& ((1 << 6)-1)
     	c=c+1;
     	count=count+1
+        pid=1;
     elif(count >=200000 and d < len(address2)):
     	a=int(address2[d],16)
     	tag= (a >> 10) & ((1 << 22)-1)
     	index=(a >> 4)& ((1 << 6)-1)
     	d=d+1
     	count=count+1
+        pid=2;
     	if(count == 400000):
     		count=0;
         	
 	
 
-	tagvalue=Cache[index];
 
-	if(tagvalue==tag):
+    val=Cache[index];
+    tagvalue=val[0];
+    identity=val[1]
+
+    if(tagvalue==tag and identity==pid):
 		hit=hit+1;
-	else:
+    else:
 		miss=miss+1;
-		Cache[index]=tag;
+		Cache[index]=[tag,pid];
 
 
 print (hit*100)/(hit+miss)
+print Cache

@@ -12,11 +12,9 @@ address2=[];
 for line in f:
     address2.append(line);
 
-processor_id=[];
-#processor_id= interleave(len(address),len(address2));
 
 
-print len(processor_id);
+
 print " This is size partitoning"
 
 interleaved_list=[];
@@ -44,7 +42,6 @@ for i in range(0,len(interleaved_list)):
 	Cache1[index]=0;
 	Cache2[index]=0;
 	
-print len(interleaved_list);
 
 hit=0;
 miss=0;
